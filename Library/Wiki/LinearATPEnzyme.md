@@ -11,8 +11,8 @@ In QTT:
 ```idris
 module Wiki.LinearATPEnzyme
 
-import Math.Singleton.Bit
-import Math.OnSeq.FusedStream
+import Stage0.Singleton.Bit
+import Stage0.OnSeq.FusedStream
 import Data.Fuel
 import QuickCheck
 

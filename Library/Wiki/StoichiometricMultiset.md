@@ -11,10 +11,10 @@ Documents metabolic reaction stoichiometry using multiset balance ($\sum \text{R
 ```idris
 module Wiki.StoichiometricMultiset
 
-import Math.Multiset
-import Core.BoxInt
-import Core.Order.Preorder
-import Math.OnSeq.FusedStream
+import Stage0.Multiset
+import Stage0.BoxInt
+import Stage1.Order.Preorder
+import Stage0.OnSeq.FusedStream
 import Data.Fuel
 import QuickCheck
 

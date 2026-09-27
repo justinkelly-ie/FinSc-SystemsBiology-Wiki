@@ -7,7 +7,7 @@ Implements the open `ScaleTransform` interface (`Core.ScaleTransform`) mapping b
 ```idris
 module Wiki.ScaleTransforms
 
-import Core.ScaleTransform
+import Stage1.ScaleTransform
 import Wiki.LinearATPEnzyme
 
 %default total

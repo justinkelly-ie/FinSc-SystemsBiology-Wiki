@@ -28,7 +28,7 @@ $$Q_{\text{total}} = 30 \times 25 = 750$$
 ```idris
 module Wiki.Observations.MetabolicPathway
 
-import Math.BoxInt
+import Stage0.BoxInt
 import Data.Nat
 import QuickCheck
 

@@ -9,10 +9,16 @@ import Wiki.StoichiometricMultiset
 import Wiki.LinearATPEnzyme
 import Wiki.Reflect.SystemsBiologyAuditor
 import Wiki.Reflect.SystemsBiologyMacroSolver
-import Math.Dihedron.Dihedron
-import Math.Multiset
-import Core.BoxInt
+import Stage1.Dihedron
+import Stage0.Multiset
+
+import Stage0.BoxInt
 import Wiki.ScaleTransforms
+import Stage1.ScaleTransform
+import Stage1.TypeTheory.Staging
+import Stage1.TypeTheory.TwoLevel
+
+
 
 %default total
 
@@ -87,3 +93,19 @@ main = do
   putStrLn "=========================================================================="
   putStrLn "   ALL DISCRETE SYSTEMS BIOLOGY & QUANTUM COHERENCE SUITES PASSED WITH 100% TOTALITY!"
   putStrLn "=========================================================================="
+
+------------------------------------------------------------------------
+-- 2LTT STAGING CODE GENERATOR TRANSDUCER
+------------------------------------------------------------------------
+
+||| Deforested 2LTT staged code generator transducer for systems biology scale transform evaluation.
+%inline public export
+stagedSystemsBiologyPipeline : ATPMolecule -> Code ADPMolecule
+stagedSystemsBiologyPipeline atp = quote (scaleTransform atp)
+
+||| QTT 0 erased proof witness verifying systems biology staging inverse identity.
+public export
+0 prfStagedSystemsBiologyPipeline : (atp : ATPMolecule) -> splice (stagedSystemsBiologyPipeline atp) = scaleTransform atp
+prfStagedSystemsBiologyPipeline atp = inverseSpliceQuote (scaleTransform atp)
+
+

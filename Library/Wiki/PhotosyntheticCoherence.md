@@ -11,9 +11,10 @@ Documents quantum coherence, excitonic phase superposition, and dephasing in pho
 ```idris
 module Wiki.PhotosyntheticCoherence
 
-import Math.Dihedron.Dihedron
-import Math.BoxInt
-import Core.BoxInt
+import Stage1.Dihedron
+import Stage0.BoxInt
+
+import Stage0.BoxInt
 import QuickCheck
 
 %default total
