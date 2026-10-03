@@ -3,7 +3,7 @@ version = 0.1.0
 authors = "Justin Kelly"
 brief   = "Discrete Systems Biology, Metabolic Networks & Physiological Systems Architecture Specification Wiki"
 
-depends = FinSc-Biology, FinSc-Electromagnetism, FinSc-Geometry, FinSc-Multiset-Core, FinSc-Multiset-Transform, FinSc-QuantumComputing, base, FinSc-Dihedron, idris2-QuickCheck, linear
+depends = FinSc-Biology, FinSc-Electromagnetism, FinSc-Geometry, FinSc-Multiset, FinSc-Metric-Substrate, FinSc-Multiset-Transform, FinSc-Quantum-Coherence, base, FinSc-Dihedron, idris2-QuickCheck, linear
 sourcedir = "Library"
 
 modules = Wiki.LinearATPEnzyme,
