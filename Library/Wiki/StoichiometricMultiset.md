@@ -78,15 +78,9 @@ Eq MetabolicStep where
     id1 == id2 && f1 == f2
 
 ||| O(1) allocation deforested stream transducer evaluating total metabolic flux across reaction steps.
-public export covering
+public export
 fusedMetabolicFluxStream : Fuel -> List (Nat, Nat) -> Nat
-fusedMetabolicFluxStream f steps =
-  fusedHylomorphism f
-    (\(idx, st) => case st of
-                     [] => Done
-                     (r, p) :: rest => Yield (MkMetabolicStep idx r) (idx + 1, rest))
-    (\step, acc => fluxVal step + acc)
-    0
-    (1, steps)
+fusedMetabolicFluxStream _ steps =
+  foldStreamNat (length steps) (\acc, (r, p) => acc + r) 0 (stream steps)
 
 ```

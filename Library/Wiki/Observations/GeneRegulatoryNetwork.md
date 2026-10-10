@@ -17,7 +17,7 @@ In discrete geometry, GRNs map to:
   ┌───────────────────────────┬──────────────────────────────────────┬──────────────────────────────────────────┐
   │ GRN System                │ Transient Stem Cell State            │ Differentiated Cell Type Attractor       │
   ├───────────────────────────┼──────────────────────────────────────┼──────────────────────────────────────────┤
-  │ 1. Boole                  │ Gene state [1, 0, 1, 0]              │ Stable attractor [1, 1, 0, 0]            │
+  │ 1. Boole                  │ Gene state [One, Zero, One, Zero]    │ Stable attractor [One, One, Zero, Zero]  │
   │ 2. Multivariable          │ Distance to attractor Q > 0          │ Fixed point attractor distance Q = 0     │
   │ 3. Substrate              │ Active regulatory edges (lag = 4)     │ Attractor steady-state lag conserved     │
   │ 4. Trigonometry           │ Trajectory spread s = 1/2            │ Attractor spread s = 0 (fixed point)     │
@@ -34,6 +34,7 @@ module Wiki.Observations.GeneRegulatoryNetwork
 import Stage0.Singleton.Bit
 import Stage0.Singleton.Sing
 import Data.Nat
+import Data.Vect
 import QuickCheck
 
 %default total
@@ -46,7 +47,7 @@ import QuickCheck
 public export
 record GRNState where
   constructor MkGRNState
-  geneStates     : List Nat         -- N-gene ON/OFF state [g1, g2, g3, g4]
+  geneStates     : Vect 4 Bit       -- 4-gene ON/OFF bit state [g1, g2, g3, g4]
   isAttractorBit : Bit              -- One = steady-state cell type attractor
 
 -----------------------------------------------------------------------
@@ -57,13 +58,13 @@ record GRNState where
 public export
 canonicalStemCellGRN : GRNState
 canonicalStemCellGRN =
-  MkGRNState [1, 0, 1, 0] Zero
+  MkGRNState [One, Zero, One, Zero] Zero
 
 ||| Evolves GRN 1 time step under transcriptional feedback rules:
 public export
 stepGRN : GRNState -> GRNState
 stepGRN grn =
-  MkGRNState [1, 1, 0, 0] One
+  MkGRNState [One, One, Zero, Zero] One
 
 -----------------------------------------------------------------------
 -- 3. VERIFIED GRN ATTRACTOR INVARIANT PROPERTIES

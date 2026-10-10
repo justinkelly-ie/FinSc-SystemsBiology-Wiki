@@ -36,17 +36,11 @@ record VerifiedMetabolicState where
   atpOutput : Nat
   0 yieldPrf : ATPYieldConservationWitness atpInput atpOutput
 
-||| $O(1)$ allocation deforested ATP yield stream transducer using fusedHylomorphism
-public export covering
+||| $O(1)$ allocation deforested ATP yield stream transducer using foldStreamNat
+public export
 fusedATPYieldStream : Fuel -> List (Nat, Nat) -> Nat
-fusedATPYieldStream f items =
-  fusedHylomorphism f
-    (\st => case st of
-              [] => Done
-              (a1, a2) :: rest => Yield (a1 + a2) rest)
-    (\val, acc => val + acc)
-    0
-    items
+fusedATPYieldStream _ items =
+  foldStreamNat (length items) (\acc, (a1, a2) => acc + a1 + a2) 0 (stream items)
 
 public export
 data ATPMolecule = MkATP
