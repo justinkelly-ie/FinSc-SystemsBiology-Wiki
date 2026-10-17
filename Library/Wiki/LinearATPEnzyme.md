@@ -13,6 +13,7 @@ module Wiki.LinearATPEnzyme
 
 import Stage0.Singleton.Bit
 import Stage0.OnSeq.FusedStream
+import Stage0.StructuralFuel
 import Data.Fuel
 import QuickCheck
 
@@ -38,9 +39,9 @@ record VerifiedMetabolicState where
 
 ||| $O(1)$ allocation deforested ATP yield stream transducer using foldStreamNat
 public export
-fusedATPYieldStream : Fuel -> List (Nat, Nat) -> Nat
-fusedATPYieldStream _ items =
-  foldStreamNat (length items) (\acc, (a1, a2) => acc + a1 + a2) 0 (stream items)
+fusedATPYieldStream : GohFuel cap -> List (Nat, Nat) -> Nat
+fusedATPYieldStream fuel items =
+  foldStreamNat (gohSteps fuel) (\acc, (a1, a2) => acc + a1 + a2) 0 (stream items)
 
 public export
 data ATPMolecule = MkATP
@@ -62,7 +63,7 @@ prop_atpHydrolysisYields25Q : Bool
 prop_atpHydrolysisYields25Q =
   let atp = MkATP
       (adp, pi, qEnergy) = hydrolyzeLinearATP atp
-      streamSum = fusedATPYieldStream (limit 100) [(25, 25)]
+      streamSum = fusedATPYieldStream ellipticGohFuelModel [(25, 25)]
   in qEnergy == 25 && streamSum == 50
 
 ||| Proof witness exporter for QTT Linear ATP & Enzyme Kinetics
