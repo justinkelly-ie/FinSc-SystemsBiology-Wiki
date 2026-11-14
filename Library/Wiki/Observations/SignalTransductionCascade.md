@@ -28,8 +28,8 @@ In discrete geometry, signal cascades couple:
 ```idris
 module Wiki.Observations.SignalTransductionCascade
 
-import Stage0.Singleton.Bit
-import Stage0.Singleton.Sing
+import Stage0.Bit
+import Stage0.Token
 import Data.Nat
 import QuickCheck
 

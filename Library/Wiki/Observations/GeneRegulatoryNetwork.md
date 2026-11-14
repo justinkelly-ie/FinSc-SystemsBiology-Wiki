@@ -31,8 +31,8 @@ In discrete geometry, GRNs map to:
 ```idris
 module Wiki.Observations.GeneRegulatoryNetwork
 
-import Stage0.Singleton.Bit
-import Stage0.Singleton.Sing
+import Stage0.Bit
+import Stage0.Token
 import Data.Nat
 import Data.Vect
 import QuickCheck

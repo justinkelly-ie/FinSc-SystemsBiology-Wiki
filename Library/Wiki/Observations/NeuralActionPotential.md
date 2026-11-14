@@ -32,8 +32,8 @@ In discrete geometry, neural spike trains couple:
 ```idris
 module Wiki.Observations.NeuralActionPotential
 
-import Stage0.Singleton.Bit
-import Stage0.Singleton.Sing
+import Stage0.Bit
+import Stage0.Token
 import Data.Nat
 import QuickCheck
 
