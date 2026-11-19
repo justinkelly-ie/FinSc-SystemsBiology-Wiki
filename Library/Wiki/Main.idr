@@ -60,8 +60,8 @@ main = do
 
   putStrLn ""
   putStrLn "--- PART 6: STOICHIOMETRIC MULTISET REACTION BALANCE ---"
-  let reactants = AddM (MkBoxInt 1) 2 ZeroM
-  let products  = AddM (MkBoxInt 1) 2 ZeroM
+  let reactants = singletonCarrier (MkBoxInt 1) (intToBoxInt 2)
+  let products  = singletonCarrier (MkBoxInt 1) (intToBoxInt 2)
   let reaction = MkReaction reactants products
   if prop_reactionMassEnergyBalanced reaction
      then putStrLn "   -> PASS: Stoichiometric Multiset Reaction Mass-Energy Conservation verified!"

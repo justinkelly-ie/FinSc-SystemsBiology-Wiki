@@ -4,7 +4,7 @@ Documents metabolic reaction stoichiometry using multiset balance ($\sum \text{R
 
 - **Reactant Multiset ($R$)**: Input metabolic species multiset.
 - **Product Multiset ($P$)**: Output metabolic species multiset.
-- **Mass-Energy Conservation**: Reaction balance requires `annihilateMultiset (addMultiset R (negateMultiset P)) == ZeroM`.
+- **Mass-Energy Conservation**: Reaction balance requires `subM R P == BoxLeaf`.
 
 ---
 
@@ -20,19 +20,19 @@ import QuickCheck
 
 %default total
 
-||| Represents a Balanced Stoichiometric Reaction over Multisets
+||| Represents a Balanced Stoichiometric Reaction over Carriers
 public export
 record StoichiometricReaction where
   constructor MkReaction
-  reactants : Multiset Integer BoxInt
-  products  : Multiset Integer BoxInt
+  reactants : Carrier BoxInt
+  products  : Carrier BoxInt
 
 ||| Property 1: Stoichiometric Reaction Mass-Energy Conservation Invariant
 public export
 prop_reactionMassEnergyBalanced : StoichiometricReaction -> Bool
 prop_reactionMassEnergyBalanced (MkReaction r p) =
-  let net = annihilateMultiset (addMultiset r (negateMultiset p))
-  in multiplicityAll net == 0
+  let net = subM r p
+  in net == BoxLeaf
 
 ||| Proof witness exporter for Stoichiometric Multiset Balance
 public export
